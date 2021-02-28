@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -15,22 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.301'
-
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    
+    - name: Download PowerShell Universal
+      shell: powershell
+      run: .\download.ps1
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'tamethecloud'
+        app-name: 'psu-example'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_acff7fc045f94329b7db0cab67baa6c0 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_514774c9fda941c5ab7929173db1eb20 }}
+        package: ./pu
