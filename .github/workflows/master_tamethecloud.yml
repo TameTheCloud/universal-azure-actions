@@ -26,4 +26,4 @@ jobs:
         app-name: 'tamethecloud'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_07a2630d75eb41b78ecfee7fe38dd032 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        package: ./pu
