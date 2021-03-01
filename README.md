@@ -11,3 +11,4 @@ This example uses a Windows Web App. It needs to be setup for .NET Core and with
 !
 
 ![](./images/settings.png)
+
